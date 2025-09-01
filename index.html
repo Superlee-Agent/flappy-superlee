@@ -272,7 +272,6 @@
   function gameOver() {
     state = "over"; hitSfx();
     if (score > high) { high = score; localStorage.setItem('flappy_superlee_hi', String(high)); }
-    elHi.textContent = "High Score: " + high;
     stopMusic();
     setTimeout(() => { menu.style.display='flex'; }, 250);
   }
