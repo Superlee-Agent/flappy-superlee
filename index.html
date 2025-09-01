@@ -1,15 +1,14 @@
-<!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Flappy Superlee — + Audio & Difficulty</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Flappy Superlee — + Audio &amp; Difficulty</title>
 <style>
   :root { --w: 432; --h: 768; }
   * { box-sizing: border-box; }
-  html, body { display:flex; align-items:center; justify-content:center; background: linear-gradient(#77c8ff, #bfe7ff); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; height:100%; overflow:hidden; }
-  body { display:flex; align-items:center; justify-content:center; background: linear-gradient(#77c8ff, #bfe7ff); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; height:100%; overflow:hidden; }
-  .wrap { position: relative; width: 432px; height: 768px; }
+  html, 
+  
+  .wrap { position: relative; width: 432px; height: 768px; margin:auto; }
   canvas {
     position:absolute; inset:0; width:100%; height:100%;
     background: #78c5ff; border-radius: 18px;
@@ -29,37 +28,30 @@
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <canvas id="game" width="432" height="768"></canvas>
-    <div class="hud"><div id="score">Score: 0</div><div id="hi">High Score: 0</div></div><div id="hi">High Score: 0</div></div>
-      <div id="hi">Hi-score: 0</div>
-    </div>
-
-    <!-- Menu Overlay -->
-    <div class="overlay" id="menu">
-      <div class="panel">
-        <h2 style="margin:6px 0 12px;">Flappy Superlee</h2>
-        <div style="margin-bottom:6px; font-weight:600; text-align:center;">Choose difficulty:</div>
-        <div class="row">
-          <button class="btn toggle" data-diff="Easy">Easy</button>
-          <button class="btn toggle" data-diff="Normal">Normal</button>
-          <button class="btn toggle" data-diff="Hard">Hard</button>
-          <button class="btn toggle" data-diff="Insane">Insane</button>
-        </div>
-        <div class="row" style="margin-top:12px; justify-content:center;">
-          <button id="playBtn" class="btn">Start (Space/Tap)</button>
-        </div>
-        <div style="margin-top:8px; font-size:12px; text-align:center;">Tap/Click or press Space to fly • Music can be turned off</div>
-      </div>
-      <div class="row">
-        <button id="musicBtn" class="btn">Music: ON</button>
-        <button id="soundBtn" class="btn">SFX: ON</button>
-      </div>
-    </div>
-
-    <div class="credits">💡 Tap / Click / Space to <b>fly</b></div>
-  </div>
-
+<div class="wrap">
+<canvas height="768" id="game" width="432"></canvas><div class="hud"><div id="score"></div><div id="hi"></div></div>
+</div>
+<div class="overlay" id="menu">
+<div class="panel">
+<h2 style="margin:6px 0 12px;">Flappy Superlee</h2>
+<div style="margin-bottom:6px; font-weight:600; text-align:center;">Choose difficulty:</div>
+<div class="row">
+<button class="btn toggle" data-diff="Easy">Easy</button>
+<button class="btn toggle" data-diff="Normal">Normal</button>
+<button class="btn toggle" data-diff="Hard">Hard</button>
+<button class="btn toggle" data-diff="Insane">Insane</button>
+</div>
+<div class="row" style="margin-top:12px; justify-content:center;">
+<button class="btn" id="playBtn">Start (Space/Tap)</button>
+</div>
+<div style="margin-top:8px; font-size:12px; text-align:center;">Tap/Click or press Space to fly • Music can be turned off</div>
+</div>
+<div class="row">
+<button class="btn" id="musicBtn">Music: ON</button>
+<button class="btn" id="soundBtn">SFX: ON</button>
+</div>
+</div>
+<div class="credits">💡 Tap / Click / Space to <b>fly</b></div>
 <script>
 (() => {
   const W = 432, H = 768;
@@ -112,7 +104,7 @@
   // UI buttons for audio
   const musicBtn = document.getElementById('musicBtn');
   const soundBtn = document.getElementById('soundBtn');
-  musicBtn.addEventListener('click', () => { musicOn = !musicOn; musicBtn.textContent = 'Musik: ' + (musicOn?'ON':'OFF'); if(musicOn) startMusic(); else stopMusic(); });
+  musicBtn.addEventListener('click', () => { musicOn = !musicOn; musicBtn.textContent = 'Music: ' + (musicOn?'ON':'OFF'); if(musicOn) startMusic(); else stopMusic(); });
   soundBtn.addEventListener('click', () => { sfxOn = !sfxOn; soundBtn.textContent = 'SFX: ' + (sfxOn?'ON':'OFF'); });
 
   // --- Load hero and chroma-key background ---
@@ -208,7 +200,7 @@
   window.addEventListener('pointerdown', (e)=>{ e.preventDefault(); flap(); });
 
   const elScore = document.getElementById('score');
-  const elHi = document.getElementById('hi'); elHi.textContent = "Hi-score: " + high;
+  const elHi = document.getElementById('hi'); elHi.textContent = "High Score: " + high;
 
   function drawBackground() {
     const g = ctx.createLinearGradient(0,0,0,H);
@@ -280,7 +272,7 @@
   function gameOver() {
     state = "over"; hitSfx();
     if (score > high) { high = score; localStorage.setItem('flappy_superlee_hi', String(high)); }
-    elHi.textContent = "Hi-score: " + high;
+    elHi.textContent = "High Score: " + high;
     stopMusic();
     setTimeout(() => { menu.style.display='flex'; }, 250);
   }
@@ -298,7 +290,7 @@
       ctx.fillStyle = '#fff'; ctx.font = 'bold 36px system-ui, Arial';
       ctx.fillText('Game Over', 130, H*0.34);
       ctx.font = 'bold 22px system-ui, Arial'; ctx.fillText('Score: ' + score, 170, H*0.34 + 40);
-      ctx.fillText('Hi-score: ' + high, 158, H*0.34 + 68);
+      ctx.fillText('High Score: ' + high, 158, H*0.34 + 68);
     }
   }
 
