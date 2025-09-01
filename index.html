@@ -7,13 +7,9 @@
 <style>
   :root { --w: 432; --h: 768; }
   * { box-sizing: border-box; }
-  html, body { height: 100%; margin: 0; }
-  body {
-    display:flex; align-items:center; justify-content:center; 
-    background: linear-gradient(#77c8ff, #bfe7ff);
-    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  }
-  .wrap { position: relative; width: min(92vw, 520px); aspect-ratio: calc(var(--w) / var(--h)); }
+  html, body { display:flex; align-items:center; justify-content:center; background: linear-gradient(#77c8ff, #bfe7ff); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; height:100%; overflow:hidden; }
+  body { display:flex; align-items:center; justify-content:center; background: linear-gradient(#77c8ff, #bfe7ff); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; height:100%; overflow:hidden; }
+  .wrap { position: relative; width: 432px; height: 768px; }
   canvas {
     position:absolute; inset:0; width:100%; height:100%;
     background: #78c5ff; border-radius: 18px;
@@ -35,8 +31,7 @@
 <body>
   <div class="wrap">
     <canvas id="game" width="432" height="768"></canvas>
-    <div class="hud">
-      <div id="score">Score: 0</div>
+    <div class="hud"><div id="score">Score: 0</div><div id="hi">High Score: 0</div></div><div id="hi">High Score: 0</div></div>
       <div id="hi">Hi-score: 0</div>
     </div>
 
@@ -44,7 +39,7 @@
     <div class="overlay" id="menu">
       <div class="panel">
         <h2 style="margin:6px 0 12px;">Flappy Superlee</h2>
-        <div style="margin-bottom:6px; font-weight:600; text-align:center;">Pilih tingkat kesulitan:</div>
+        <div style="margin-bottom:6px; font-weight:600; text-align:center;">Choose difficulty:</div>
         <div class="row">
           <button class="btn toggle" data-diff="Easy">Easy</button>
           <button class="btn toggle" data-diff="Normal">Normal</button>
@@ -52,17 +47,17 @@
           <button class="btn toggle" data-diff="Insane">Insane</button>
         </div>
         <div class="row" style="margin-top:12px; justify-content:center;">
-          <button id="playBtn" class="btn">Mulai (Space/Tap)</button>
+          <button id="playBtn" class="btn">Start (Space/Tap)</button>
         </div>
-        <div style="margin-top:8px; font-size:12px; text-align:center;">Tap/klik atau Space untuk terbang • Musik bisa dimatikan</div>
+        <div style="margin-top:8px; font-size:12px; text-align:center;">Tap/Click or press Space to fly • Music can be turned off</div>
       </div>
       <div class="row">
-        <button id="musicBtn" class="btn">Musik: ON</button>
+        <button id="musicBtn" class="btn">Music: ON</button>
         <button id="soundBtn" class="btn">SFX: ON</button>
       </div>
     </div>
 
-    <div class="credits">💡 Tap / klik / Space untuk <b>terbang</b></div>
+    <div class="credits">💡 Tap / Click / Space to <b>fly</b></div>
   </div>
 
 <script>
