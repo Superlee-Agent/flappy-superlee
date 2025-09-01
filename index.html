@@ -200,7 +200,7 @@
   window.addEventListener('pointerdown', (e)=>{ e.preventDefault(); flap(); });
 
   const elScore = document.getElementById('score');
-  const elHi = document.getElementById('hi'); elHi.textContent = "High Score: " + high;
+  const elHi = document.getElementById('hi');
 
   function drawBackground() {
     const g = ctx.createLinearGradient(0,0,0,H);
